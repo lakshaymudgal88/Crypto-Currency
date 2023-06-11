@@ -27,20 +27,21 @@ fun CoinDetailScreen(
     val state = viewModel.coinState.value
     Box(modifier = Modifier.fillMaxSize()) {
         state.coinDetail?.let { coin ->
-            LazyColumn(modifier = Modifier.fillMaxSize()) {
+            LazyColumn(modifier = Modifier.fillMaxSize()
+                .padding(16.dp)) {
                 item {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Text(
-                            text = "${coin.coinId}. ${coin.name} (${coin.symbol})",
+                            text = "${coin.rank}. ${coin.name} (${coin.symbol})",
                             style = MaterialTheme.typography.h2,
                             modifier = Modifier.weight(8f)
                         )
                         Text(
                             text = if (coin.isActive) "active" else "inactive",
-                            style = MaterialTheme.typography.h2,
+                            style = MaterialTheme.typography.body1,
                             modifier = Modifier.weight(2f),
                             color = if (coin.isActive) Color.Green else Color.Red,
                             fontStyle = FontStyle.Italic,
@@ -50,12 +51,12 @@ fun CoinDetailScreen(
                     Spacer(modifier = Modifier.height(15.dp))
                     Text(
                         text = coin.description,
-                        style = MaterialTheme.typography.h4
+                        style = MaterialTheme.typography.body1
                     )
                     Spacer(modifier = Modifier.height(15.dp))
                     Text(
                         text = "Tags",
-                        style = MaterialTheme.typography.h4
+                        style = MaterialTheme.typography.h6
                     )
                     Spacer(modifier = Modifier.height(15.dp))
                     FlowRow(
@@ -70,7 +71,7 @@ fun CoinDetailScreen(
                     Spacer(modifier = Modifier.height(15.dp))
                     Text(
                         text = "Team Members",
-                        style = MaterialTheme.typography.h4
+                        style = MaterialTheme.typography.h6
                     )
                     Spacer(modifier = Modifier.height(15.dp))
                 }
@@ -79,7 +80,7 @@ fun CoinDetailScreen(
                         teamMember = member,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(10.dp)
+                            .padding(vertical = 10.dp)
                     )
                     Divider()
                 }

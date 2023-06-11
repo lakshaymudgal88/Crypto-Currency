@@ -5,7 +5,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cryptocurrency.common.Constants
 import com.example.cryptocurrency.common.Resource
 import com.example.cryptocurrency.domain.usecases.GetCoinUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,12 +18,11 @@ class CoinDetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-
     private val _coinState = mutableStateOf(CoinDetailUIState())
     val coinState: State<CoinDetailUIState> = _coinState
 
     init {
-        savedStateHandle.get<String>(Constants.COIN_ID)?.let {
+        savedStateHandle.get<String>("coinId")?.let {
             getCoins(it)
         }
     }
